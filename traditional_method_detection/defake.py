@@ -234,9 +234,7 @@ def process_image(image_path, detections):
         "noise_variance_inconsistency": noise_variance_inconsistency,
         "copy_move_detect": copy_move_detect,
         "ela_analysis": ela_analysis,
-        "jpeg_compression": jpeg_Compression,
-        "image_decode": image_decode,
-        "string_analysis": string_analysis
+        "jpeg_compression": jpeg_Compression
     }
 
     for detection in detections:
@@ -255,7 +253,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-d", "--detections", nargs="+", help="List of detection methods to apply", 
         choices=["sift_dbscan_detect", "metadata_analysis", "noise_variance_inconsistency", 
-                 "copy_move_detect", "ela_analysis", "jpeg_compression", "image_decode", "string_analysis"],
+                 "copy_move_detect", "ela_analysis", "jpeg_compression"],
         required=True
     )
     args = parser.parse_args()
