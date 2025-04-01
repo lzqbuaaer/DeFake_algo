@@ -1,0 +1,4 @@
+/traditional_method_detection/input
+/traditional_method_detection/output
+*.pyc
+__pycache__/
