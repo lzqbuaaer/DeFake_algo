@@ -47,7 +47,7 @@ def sift_dbscan_detect(path):
         print("Forgery detected, saving the forged image...")
         name = os.path.basename(path)
         date = datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
-        output = os.path.join(output_path, 'copy_move_forgery')
+        output = os.path.join(output_path, 'sift_dbscan_detect')
         if not os.path.exists(output):
             os.makedirs(output)
         new_file_name = os.path.join(output, date + '-' + name)
