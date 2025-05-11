@@ -20,5 +20,8 @@ pip install -r requirements.txt
 python defake.py -d sift_dbscan_detect metadata_analysis --input path/to/the/image
 ```
 
+## FOCAL
+
+## FakeShield
 
 
