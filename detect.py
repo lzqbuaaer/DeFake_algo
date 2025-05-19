@@ -158,12 +158,16 @@ def detect_sift_dbscan(input_path, uuid, eps=100, min_sample=2):
     for file in os.listdir(input_path):
         detect = Detect(os.path.join(input_path, file))
         key_points, descriptors = detect.siftDetector()
-        forgery, detected = detect.locateForgery(eps, min_sample)
-        if detected:
-            cv2.imwrite(os.path.join(output_path, 'sift_' + file), forgery)
-        else:
+        if len(key_points) == 0:
             cv2.imwrite(os.path.join(output_path, 'sift_' + file), detect.image)
-        detecteds.append(detected)
+            detecteds.append(False)
+        else:
+            forgery, detected = detect.locateForgery(eps, min_sample)
+            if detected:
+                cv2.imwrite(os.path.join(output_path, 'sift_' + file), forgery)
+            else:
+                cv2.imwrite(os.path.join(output_path, 'sift_' + file), detect.image)
+            detecteds.append(detected)
     return output_path, detecteds
             
 
@@ -264,19 +268,6 @@ def detect():
         sift_path, sift_ret = detect_sift_dbscan(input_path, uuid)
         logger.info(f'OUTPUT figure : uuid={uuid} path={sift_path}')
 
-        renew(uuid, figure_num // 4)
-        # fakesheild detect
-        fakeshield_path = detect_fakeshield(input_path, uuid)
-        if fakeshield_path != None:
-            logger.info(f'OUTPUT figure : uuid={uuid} path={fakeshield_path}')
-            jsonl_path = f'/home/zyw/DeFake_algo/output/fakeshield/{uuid}/DTE-FDM_output.jsonl'
-            backup_jsonl_path = f'/home/zyw/DeFake_algo/output/fakeshield/{uuid}/backup_DTE-FDM_output.jsonl'
-            shutil.copy(jsonl_path, backup_jsonl_path)
-            renew(uuid, figure_num * 3 // 5)
-            translate(jsonl_path)
-            fakeshield_analysis = build_dict_by_first_key(jsonl_path)
-        else:
-            return
 
         for i in range(figure_num):
             basename = os.path.basename(url_list[i])
@@ -300,18 +291,34 @@ def detect():
                 sift_result['output'] = '未检测出造假痕迹'
                 sift_result['rate'] = 0.25
             result['sift'] = sift_result
+            upload_result(uuid, id_list[i], result)
 
+        renew(uuid, figure_num // 3)
+        # fakesheild detect
+        fakeshield_path = detect_fakeshield(input_path, uuid)
+        if fakeshield_path != None:
+            logger.info(f'OUTPUT figure : uuid={uuid} path={fakeshield_path}')
+            jsonl_path = f'/home/zyw/DeFake_algo/output/fakeshield/{uuid}/DTE-FDM_output.jsonl'
+            backup_jsonl_path = f'/home/zyw/DeFake_algo/output/fakeshield/{uuid}/backup_DTE-FDM_output.jsonl'
+            shutil.copy(jsonl_path, backup_jsonl_path)
+            renew(uuid, figure_num * 3 // 5)
+            translate(jsonl_path)
+            fakeshield_analysis = build_dict_by_first_key(jsonl_path)
+        else:
+            return
+
+        for i in range(figure_num):
+            basename = os.path.basename(url_list[i])
+            result = {}
             fakeshield_result = {}
             fakeshield_upload_url = upload_figure(os.path.join(fakeshield_path, 'fakeshield_' + os.path.splitext(basename)[0] + '.png'))
             fakeshield_result['upload_url'] = fakeshield_upload_url
             fakeshield_result['score'] = f"{float(fakeshield_analysis[input_path + '/' + basename]['score'])/100}"
             fakeshield_result['analysis'] = fakeshield_analysis[input_path + '/' + basename]['outputs']
             result['fakeshield'] = fakeshield_result
-
             upload_result(uuid, id_list[i], result)
-
+            
         renew(uuid, figure_num)
-        
 
             
             
