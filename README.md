@@ -1,4 +1,4 @@
-# DeFake_algo
+# DeFake Algo
 
 ## Traditional Method Detection
 
