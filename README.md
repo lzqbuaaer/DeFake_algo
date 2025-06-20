@@ -59,7 +59,15 @@ pip install -e ".[train]"
 
 #### FOCAL
 
-。。。。。。
+预训练模型可以从[Google Drive](https://drive.google.com/drive/folders/12ayIO9PU4wvqWqniT3KtH8tCvrZ-M-zd)下载。
+
+请将你的 `weight/` 文件夹整理如下结构：
+```
+ focal/
+ ├── weight/
+ │   ├── FOCAL_HRNet_weights.pth
+ │   ├── FOCAL_ViT_weights.pth
+```
 
 #### FakeShield
 
