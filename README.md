@@ -24,17 +24,17 @@ FOCAL 框架在训练阶段采用软对比学习（Soft Contrastive Learning）�
 ### FakeShield
 
 1. **输入图像处理** 
-   给定待检测图像 $\mathbf{I}_{ori}$，首先通过**领域标签生成器** $\mathcal{G}_{dt}$ 获取数据域标签 $\mathbf{T}_{tag}$。
+   给定待检测图像 $I_{ori}$，首先通过**领域标签生成器** $G_{dt}$ 获取数据域标签 $T_{tag}$。
 
 2. **多模态输入融合** 
    将以下内容同时输入至微调后的 **LLM 模型**：  
 
-   ​	数据域标签 $\mathbf{T}_{tag}$  、文本指令 $\mathbf{T}_{ins}$  、图像特征 $\mathbf{T}_{img}$ 
+   ​	数据域标签 $T_{tag}$  、文本指令 $T_{ins}$  、图像特征 $T_{img}$ 
 
-   输出生成：篡改检测结果及解释 $\mathbf{O}_{det}$。
+   输出生成：篡改检测结果及解释 $O_{det}$。
 
 3. **篡改区域定位**  
-   - 将 $\mathbf{O}_{det}$ 和 $\mathbf{T}_{img}$ 输入至**篡改理解模块** $\mathcal{C}_{t}$  
+   - 将 $O_{det}$ 和 $T_{img}$ 输入至**篡改理解模块** $\mathcal{C}_{t}$  
    - 提取最后一层 \<SEG\> 标记的嵌入表示 $\mathbf{h}_{\texttt{<SEG>}}$  
    - 将该嵌入作为提示输入 **SAM 模型**，最终生成篡改区域掩码 $\mathbf{M}_{loc}$。
 
