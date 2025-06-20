@@ -14,10 +14,8 @@ async-timeout==4.0.3
 attrs==23.1.0
 bitsandbytes==0.45.5
 bleach==6.0.0
-Brotli @ file:///croot/brotli-split_1736182456865/work
 cachetools==5.3.2
 certifi==2023.11.17
-charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
 click==8.1.7
 contourpy==1.2.0
 cycler==0.12.1
@@ -38,7 +36,7 @@ frozenlist==1.4.1
 fsspec==2023.12.2
 gitdb==4.0.12
 GitPython==3.1.44
-gmpy2 @ file:///croot/gmpy2_1738085463648/work
+gmpy2==2.2.1
 google-auth==2.25.2
 google-auth-oauthlib==1.0.0
 gradio==3.35.2
@@ -63,8 +61,6 @@ kiwisolver==1.4.5
 kmeans-pytorch==0.3
 lazy_loader==0.3
 linkify-it-py==2.0.2
-# Editable Git install with no remote (llava==1.2.2.post1)
--e /home/zyw/wlh/FakeShield/DTE-FDM
 lmdb==1.4.1
 Markdown==3.5.1
 markdown-it-py==2.2.0
@@ -74,14 +70,8 @@ matplotlib==3.4.3
 mdit-py-plugins==0.3.3
 mdurl==0.1.2
 mkl-service==2.4.0
-mkl_fft @ file:///io/mkl313/mkl_fft_1730824109137/work
-mkl_random @ file:///io/mkl313/mkl_random_1730823916628/work
-# Editable install with no version control (mmcv-full==1.7.2)
--e /home/zyw/wlh/mmcv-1.7.2
-mpmath @ file:///croot/mpmath_1690848262763/work
 msgpack==1.0.7
 multidict==6.0.4
-networkx @ file:///croot/networkx_1717597493534/work
 ninja==1.11.1.1
 numpy==1.24.0
 nvidia-ml-py==12.570.86
@@ -107,7 +97,7 @@ pydub==0.25.1
 Pygments==2.19.1
 pynvml==11.5.0
 pyparsing==3.1.1
-PySocks @ file:///tmp/build/80754af9/pysocks_1605305812635/work
+PySocks==1.7.1
 python-dateutil==2.8.2
 python-multipart==0.0.6
 pytz==2023.3.post1
@@ -139,7 +129,7 @@ sqlparse==0.5.3
 starlette==0.27.0
 stringzilla==3.12.4
 svgwrite==1.4.3
-sympy @ file:///croot/sympy_1738108488918/work
+sympy==1.13.3
 tensorboard==2.13.0
 tensorboard-data-server==0.7.2
 terminaltables==3.1.10
